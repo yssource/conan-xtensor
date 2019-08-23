@@ -12,15 +12,17 @@ class XtensorConan(ConanFile):
     topics = ("numpy", "multidimensional-arrays", "tensors")
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
-
-    # TODO Add option for tbb and xtensor
+    options = {"xsimd": [True, False]}
+    default_options = {"xsimd": True}
+    # TODO Add option for tbb
 
     def source(self):
         self.run("git clone -b '%s' --single-branch --depth 1 %s" % (self.version, self.repo_url))
     
     def requirements(self):
         self.requires.add('xtl/0.6.4@omaralvarez/public-conan')
-        self.requires.add('xsimd/7.2.3@omaralvarez/public-conan')
+        if self.options.xsimd:
+            self.requires.add('xsimd/7.2.3@omaralvarez/public-conan')
     
     def _configure_cmake(self):
         cmake = CMake(self)
@@ -28,10 +30,11 @@ class XtensorConan(ConanFile):
         cmake.definitions["xtl_DIR"] = join(
             self.deps_cpp_info["xtl"].rootpath, "lib", "cmake", "xtl"
         )
-        cmake.definitions["xsimd_DIR"] = join(
-            self.deps_cpp_info["xsimd"].rootpath, "lib", "cmake", "xsimd"
-        )
-        cmake.definitions['XTENSOR_USE_XSIMD'] = True
+        if self.options.xsimd:
+            cmake.definitions["xsimd_DIR"] = join(
+                self.deps_cpp_info["xsimd"].rootpath, "lib", "cmake", "xsimd"
+            )
+        cmake.definitions['XTENSOR_USE_XSIMD'] = self.options.xsimd
         cmake.configure(source_folder="xtensor")
         return cmake
 
