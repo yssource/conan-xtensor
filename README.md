@@ -1,3 +1,5 @@
+![travis](https://travis-ci.org/omaralvarez/conan-xtensor.svg?branch=master)
+
 # conan-xtensor
     
 ## Reuse the packages
