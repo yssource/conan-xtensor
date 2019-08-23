@@ -1,4 +1,4 @@
-![travis](https://travis-ci.org/omaralvarez/conan-xtensor.svg?branch=master)
+[ ![Download](https://api.bintray.com/packages/omaralvarez/public-conan/xtensor%3Aomaralvarez/images/download.svg?version=0.20.8%3Apublic-conan) ](https://bintray.com/omaralvarez/public-conan/xtensor%3Aomaralvarez/0.20.8%3Apublic-conan/link) ![travis](https://travis-ci.org/omaralvarez/conan-xtensor.svg?branch=master)
 
 # conan-xtensor
     
