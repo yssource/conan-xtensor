@@ -3,7 +3,7 @@ from os.path import join
 
 class XtensorConan(ConanFile):
     name = "xtensor"
-    version = "0.20.8"
+    version = "0.20.9"
     license = "BSD 3-Clause"
     #author = "<Put your name here> <And your email here>"
     url = "https://github.com/omaralvarez/conan-xtensor"
@@ -20,9 +20,9 @@ class XtensorConan(ConanFile):
         self.run("git clone -b '%s' --single-branch --depth 1 %s" % (self.version, self.repo_url))
     
     def requirements(self):
-        self.requires.add('xtl/0.6.4@omaralvarez/public-conan')
+        self.requires.add('xtl/0.6.7@omaralvarez/public-conan')
         if self.options.xsimd:
-            self.requires.add('xsimd/7.2.3@omaralvarez/public-conan')
+            self.requires.add('xsimd/7.4.0@omaralvarez/public-conan')
     
     def _configure_cmake(self):
         cmake = CMake(self)
