@@ -6,7 +6,7 @@
 
 ### Basic setup
 
-    $ conan install xtensor/0.20.8@omaralvarez/public-conan
+    $ conan install xtensor/0.20.10@omaralvarez/public-conan
 
 ### Package basic test
     $ conan create . username/bintray-repo
@@ -18,7 +18,7 @@
 * A sample from `conanfile.txt` in the root directory:
 ```
 [requires]
-xtensor/0.20.8@omaralvarez/public-conan
+xtensor/0.20.10@omaralvarez/public-conan
 ...
 
 [generators]
