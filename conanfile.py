@@ -3,7 +3,7 @@ from os.path import join
 
 class XtensorConan(ConanFile):
     name = "xtensor"
-    version = "0.20.9"
+    version = "0.20.10"
     license = "BSD 3-Clause"
     #author = "<Put your name here> <And your email here>"
     url = "https://github.com/omaralvarez/conan-xtensor"
