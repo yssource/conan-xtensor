@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.12)
-project(PackageTest CXX)
+project(example CXX)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
@@ -24,9 +24,9 @@ include(CheckCXXCompilerFlag)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(example example.cpp)
+add_executable(${PROJECT_NAME} example.cpp)
 # target_link_libraries(example ${CONAN_LIBS} ${OpenMP_CXX_LIBRARIES})
-target_link_libraries(example ${CONAN_LIBS})
+target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
 
