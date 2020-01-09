@@ -7,17 +7,17 @@ endif()
 
 include(CheckCXXCompilerFlag)
 
-set(CMAKE_CXX_STANDARD 14)
+# set(CMAKE_CXX_STANDARD 14)
 
-CHECK_CXX_COMPILER_FLAG("-march=native" COMPILER_SUPPORTS_MARCH_NATIVE)
-if(COMPILER_SUPPORTS_MARCH_NATIVE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
-endif()
+# CHECK_CXX_COMPILER_FLAG("-march=native" COMPILER_SUPPORTS_MARCH_NATIVE)
+# if(COMPILER_SUPPORTS_MARCH_NATIVE)
+#     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
+# endif()
 
-CHECK_CXX_COMPILER_FLAG("-mtune=native" COMPILER_SUPPORTS_MARCH_NATIVE)
-if(COMPILER_SUPPORTS_MARCH_NATIVE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mtune=native")
-endif()
+# CHECK_CXX_COMPILER_FLAG("-mtune=native" COMPILER_SUPPORTS_MARCH_NATIVE)
+# if(COMPILER_SUPPORTS_MARCH_NATIVE)
+#     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mtune=native")
+# endif()
 
 find_package(OpenMP REQUIRED) # Find the package
 
@@ -27,3 +27,11 @@ conan_basic_setup()
 add_executable(example example.cpp)
 target_link_libraries(example ${CONAN_LIBS} ${OpenMP_CXX_LIBRARIES})
 
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
+
+foreach(flag "-march=native" "-mtune=native")
+  CHECK_CXX_COMPILER_FLAG(${flag} COMPILER_SUPPORTS_MARCH_NATIVE)
+  if(COMPILER_SUPPORTS_MARCH_NATIVE)
+    target_compile_options(${PROJECT_NAME} PRIVATE ${flag})
+  endif()
+endforeach()
