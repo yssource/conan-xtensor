@@ -19,13 +19,14 @@ include(CheckCXXCompilerFlag)
 #     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mtune=native")
 # endif()
 
-find_package(OpenMP REQUIRED) # Find the package
+# find_package(OpenMP REQUIRED) # Find the package
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 add_executable(example example.cpp)
-target_link_libraries(example ${CONAN_LIBS} ${OpenMP_CXX_LIBRARIES})
+# target_link_libraries(example ${CONAN_LIBS} ${OpenMP_CXX_LIBRARIES})
+target_link_libraries(example ${CONAN_LIBS})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
 
